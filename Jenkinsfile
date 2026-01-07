@@ -1,40 +1,40 @@
+#!/usr/bin/env groovy
+@Library('jenkins-shared-library')
 def gv
-pipeline{
+
+pipeline {
     agent any
-    tools{
-        maven 'maven-3.9'
+
+    tools {
+        maven 'Maven'
     }
-    stages{
-        stage("init"){
-            steps{
-                script{
-                    gv= load "script.groovy"
-                }
-            }
-        }
-        stage("build jar"){
-            steps{
-                script{
-                    gv.buildJar()
+
+    stages {
+
+        stage("init") {
+            steps {
+                script {
+                    gv = load "script.groovy"
                 }
             }
         }
 
-         stage("build image"){
-            steps{
-                script{
-                    gv.buildImage()
+        stage("build jar") {
+            steps {
+                script {
+                    buildJar()
                 }
             }
         }
 
-
-        stage("deploy"){
-            steps{
-                script{
-                    echo " Depolying the application..."
+        stage("build image") {
+            steps {
+                script {
+                    buildImage()
                 }
             }
         }
+
+       
     }
 }
