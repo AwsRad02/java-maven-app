@@ -14,6 +14,7 @@ pipeline {
         stage("init") {
             steps {
                 script {
+                    echo "test automated pipeline"
                     gv = load "script.groovy"
                 }
             }
