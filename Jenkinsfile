@@ -15,7 +15,7 @@ pipeline {
             steps {
                 script {
                     
-                    gv = load "script.groovy"
+                   echo 'inint'
                 }
             }
         }
@@ -23,7 +23,7 @@ pipeline {
         stage("build jar") {
             steps {
                 script {
-                    buildJar()
+                    echo 'building jar'
                 }
             }
         }
@@ -31,7 +31,19 @@ pipeline {
         stage("build image") {
             steps {
                 script {
-                    buildImage()
+                    echo 'building the image' 
+                }
+            }
+        }
+          stage("deploy") {
+            steps {
+                script {
+                    def dockerCmd = 'docker run -p 3080:3080 -d awsradaideh/my-repo:jma-2.0'
+
+
+                    sshagent(['ec2-server-key']) {
+                        sh "ssh -o StrictHostKeyChecking=no ec2-user@34.224.67.52 ${dockerCmd}"
+                    }
                 }
             }
         }
