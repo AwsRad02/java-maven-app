@@ -1,0 +1,15 @@
+version: '5.0.1'
+services: awsradaideh/my-repo:jma-2.0
+  java-maven-app:
+    image: 
+    ports:
+      - 8080:8080
+  postgress:
+    image: postgres:13
+    port:
+      - 5432:5432
+    envinroment:
+      -   POSTGRES_PASSWORD:my-pwd
+
+          
+      
