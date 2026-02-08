@@ -26,9 +26,9 @@ pipeline {
                 script {
                     echo "building the docker image..."
                     withCredentials([usernamePassword(credentialsId: 'ecr-credentials', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
-                        sh "docker build -t ${IMAGE_REPO}:${IMAGE_NAME} ."
+                        sh "docker build -t ${IMAGE_REPO}:${env.IMAGE_NAME} ."
                         sh "echo $PASS | docker login -u $USER --password-stdin ${ECR_REPO_URL}"
-                        sh "docker push ${IMAGE_REPO}:${IMAGE_NAME}"
+                        sh "docker push ${IMAGE_REPO}:${env.IMAGE_NAME}"
                     }
                 }
             }
