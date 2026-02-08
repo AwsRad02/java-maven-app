@@ -3,7 +3,7 @@
 pipeline {
     agent any
     tools {
-        maven 'Maven'
+        maven 'maven'
     }
     environment {
         ECR_REPO_URL = '299482272529.dkr.ecr.us-east-1.amazonaws.com/java-mvn-app'
