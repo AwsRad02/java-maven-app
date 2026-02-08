@@ -8,7 +8,7 @@ pipeline {
     environment {
         ECR_REPO_URL = '299482272529.dkr.ecr.us-east-1.amazonaws.com'
         IMAGE_REPO = "${ECR_REPO_URL}/java-maven-app"
-          IMAGE_NAME   = ''   
+        IMAGE_NAME   = '1.1.0'   
     }
     stages {
         
