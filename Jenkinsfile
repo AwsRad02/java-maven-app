@@ -6,7 +6,7 @@ pipeline {
         maven 'maven'
     }
     environment {
-        ECR_REPO_URL = '299482272529.dkr.ecr.us-east-1.amazonaws.com/java-mvn-app'
+        ECR_REPO_URL = '299482272529.dkr.ecr.us-east-1.amazonaws.com'
         IMAGE_REPO = "${ECR_REPO_URL}/java-maven-app"
           IMAGE_NAME   = ''   
     }
@@ -26,9 +26,9 @@ pipeline {
                 script {
                     echo "building the docker image..."
                     withCredentials([usernamePassword(credentialsId: 'ecr-credentials', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
-                        sh "docker build -t ${IMAGE_REPO}:${env.IMAGE_NAME} ."
+                        sh "docker build -t ${IMAGE_REPO}:${IMAGE_NAME} ."
                         sh "echo $PASS | docker login -u $USER --password-stdin ${ECR_REPO_URL}"
-                        sh "docker push ${IMAGE_REPO}:${env.IMAGE_NAME}"
+                        sh "docker push ${IMAGE_REPO}:${IMAGE_NAME}"
                     }
                 }
             }
